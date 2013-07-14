@@ -20,7 +20,7 @@ namespace iDeal.Tests.Integration
         public void CanSendTransactionRequest()
         {
             var directoryResponse = new iDealService().SendDirectoryRequest();
-            var transactionResponse = new iDealService().SendTransactionRequest(directoryResponse.Issuers.First().Id, "http://webpirates.nl", "1", 200, TimeSpan.FromMinutes(30), "test", "test");
+            var transactionResponse = new iDealService().SendTransactionRequest(directoryResponse.Issuers.First().Id, "http://skaele.it", "1", 200, TimeSpan.FromMinutes(30), "test", "test");
 
             Assert.NotNull(transactionResponse);
             Assert.AreEqual("1", transactionResponse.PurchaseId);
@@ -30,7 +30,7 @@ namespace iDeal.Tests.Integration
         public void CanSendStatusRequest()
         {
             var directoryResponse = new iDealService().SendDirectoryRequest();
-            var transactionResponse = new iDealService().SendTransactionRequest(directoryResponse.Issuers.First().Id, "http://www.webpirates.nl", "1", 3000, TimeSpan.FromMinutes(30), "test", "test");
+            var transactionResponse = new iDealService().SendTransactionRequest(directoryResponse.Issuers.First().Id, "http://www.skaele.it", "1", 3000, TimeSpan.FromMinutes(30), "test", "test");
 
             var statusResponse = new iDealService().SendStatusRequest(transactionResponse.TransactionId);
 

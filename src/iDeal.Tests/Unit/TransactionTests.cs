@@ -11,10 +11,10 @@ namespace iDeal.Tests.Unit
         [Test]
         public void CanCreateTransactionRequest()
         {
-            var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
+            var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
 
             Assert.AreEqual(1, transactionRequest.IssuerId);
-            Assert.AreEqual("http://webpirates.nl", transactionRequest.MerchantReturnUrl);
+            Assert.AreEqual("http://skaele.it", transactionRequest.MerchantReturnUrl);
             Assert.AreEqual("1", transactionRequest.PurchaseId);
             Assert.AreEqual(1000000, transactionRequest.Amount);
             Assert.AreEqual(TimeSpan.FromMinutes(30), transactionRequest.ExpirationPeriod);
@@ -36,7 +36,7 @@ namespace iDeal.Tests.Unit
         {
             Assert.Throws<InvalidOperationException>(delegate
             {
-                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
+                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
             });
         }
 
@@ -45,7 +45,7 @@ namespace iDeal.Tests.Unit
         {
             Assert.Throws<InvalidOperationException>(delegate
             {
-                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "12345678901234567", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
+                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "12345678901234567", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
             });
         }
 
@@ -54,7 +54,7 @@ namespace iDeal.Tests.Unit
         {
             Assert.Throws<InvalidOperationException>(delegate
             {
-                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, TimeSpan.FromSeconds(30), "iMac 27", "1");
+                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "1", 1000000, TimeSpan.FromSeconds(30), "iMac 27", "1");
             });
         }
 
@@ -63,7 +63,7 @@ namespace iDeal.Tests.Unit
         {
             Assert.Throws<InvalidOperationException>(delegate
             {
-                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, TimeSpan.FromMinutes(61), "iMac 27", "1");
+                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "1", 1000000, TimeSpan.FromMinutes(61), "iMac 27", "1");
             });
         }
 
@@ -72,7 +72,7 @@ namespace iDeal.Tests.Unit
         {
             Assert.Throws<InvalidOperationException>(delegate
             {
-                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, TimeSpan.FromMinutes(30), "012345678901234567890123456789012", "1");
+                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "1", 1000000, TimeSpan.FromMinutes(30), "012345678901234567890123456789012", "1");
             });
         }
 
@@ -81,7 +81,7 @@ namespace iDeal.Tests.Unit
         {
             Assert.Throws<InvalidOperationException>(delegate
             {
-                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "01234567890123456789012345678901234567891");
+                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "01234567890123456789012345678901234567891");
             });
         }
 
@@ -90,14 +90,14 @@ namespace iDeal.Tests.Unit
         {
             Assert.Throws<InvalidOperationException>(delegate
             {
-                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "");
+                var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "");
             });
         }
 
         [Test]
         public void CanGetXmlRepresentationOfTransactionRequest()
         {
-            var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
+            var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "1", 1000000, TimeSpan.FromMinutes(30), "iMac 27", "1");
             var xml = transactionRequest.ToXml(new SignatureProvider(PrivateCertificate, PublicCertificate));
             Assert.IsNotNullOrEmpty(xml);
         }
@@ -105,7 +105,7 @@ namespace iDeal.Tests.Unit
         [Test]
         public void DefaultExpirationPeriodIs30Minutes()
         {
-            var transactionRequest = new TransactionRequest("123456789", null, 1, "http://webpirates.nl", "1", 1000000, null, "iMac 27", "1");
+            var transactionRequest = new TransactionRequest("123456789", null, 1, "http://skaele.it", "1", 1000000, null, "iMac 27", "1");
 
             Assert.AreEqual(TimeSpan.FromMinutes(30), transactionRequest.ExpirationPeriod);
         }
