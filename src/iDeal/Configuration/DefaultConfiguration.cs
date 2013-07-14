@@ -30,7 +30,9 @@ namespace iDeal.Configuration
             {
                 // Retrieve certificate from file
                 if (configurationSectionHandler.AcceptantCertificatePassword.IsNullEmptyOrWhiteSpace())
+                {
                     throw new ConfigurationErrorsException("Password is required when acceptant's certificate is loaded from filesystem");
+                }
 
                 AcceptantCertificate = GetCertificateFromFile(configurationSectionHandler.AcceptantCertificateFilename, configurationSectionHandler.AcceptantCertificatePassword);
             }
@@ -38,10 +40,14 @@ namespace iDeal.Configuration
             {
                 // Retrieve certificate from certificate store
                 if (configurationSectionHandler.AcceptantCertificateStoreName.IsNullEmptyOrWhiteSpace())
+                {
                     throw new ConfigurationErrorsException("Acceptant's certificate store name is required when loading certificate from the certificate store");
+                }
 
                 if (configurationSectionHandler.AcceptantCertificateThumbprint.IsNullEmptyOrWhiteSpace())
+                {
                     throw new ConfigurationErrorsException("Acceptant's certificate thumbprint is required when loading certificate from the certificate store");
+                }
                 
                 AcceptantCertificate = GetCertificateFromStore(configurationSectionHandler.AcceptantCertificateStoreLocation.Value, configurationSectionHandler.AcceptantCertificateStoreName, configurationSectionHandler.AcceptantCertificateThumbprint);
             }
@@ -61,10 +67,14 @@ namespace iDeal.Configuration
             {
                 // Retrieve certificate from certificate store
                 if (configurationSectionHandler.AcquirerCertificateStoreName.IsNullEmptyOrWhiteSpace())
+                {
                     throw new ConfigurationErrorsException("Acquirer's certificate store name is required when loading certificate from the certificate store");
+                }
 
                 if (configurationSectionHandler.AcquirerCertificateThumbprint.IsNullEmptyOrWhiteSpace())
+                {
                     throw new ConfigurationErrorsException("Acquirer's certificate thumbprint is required when loading certificate from the certificate store");
+                }
                 
                 AcquirerCertificate = GetCertificateFromStore(configurationSectionHandler.AcquirerCertificateStoreLocation.Value, configurationSectionHandler.AcquirerCertificateStoreName, configurationSectionHandler.AcquirerCertificateThumbprint);
             }

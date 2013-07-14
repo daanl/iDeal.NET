@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Security;
 using System.Xml.Linq;
 using iDeal.Base;
@@ -29,11 +28,15 @@ namespace iDeal.Http
 
                     // Check fingerprint
                     if (statusResponse.Fingerprint != signatureProvider.GetThumbprintAcquirerCertificate())
+                    {
                         throw new SecurityException("Signature fingerprint from status respone does not match fingerprint acquirer's certificate");
+                    }
 
                     // Check digital signature
                     if (!signatureProvider.VerifySignature(statusResponse.SignatureValue, statusResponse.MessageDigest))
+                    {
                         throw new SecurityException("Signature status response from acquirer's certificate is not valid");
+                    }
                     
                         
                     return statusResponse;

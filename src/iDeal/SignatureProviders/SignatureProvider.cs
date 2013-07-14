@@ -66,7 +66,5 @@ namespace iDeal.SignatureProviders
         {
             return _publicCertificate.Thumbprint;
         }
-
-        
     }
 }

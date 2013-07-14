@@ -30,7 +30,10 @@ namespace iDeal.Transaction
             set
             {
                 if (value.IsNullEmptyOrWhiteSpace())
+                {
                     throw new InvalidOperationException("Merchant url is required");
+                }
+
                 _merchantReturnUrl = value.Trim();
             }
         }
@@ -44,9 +47,15 @@ namespace iDeal.Transaction
             set
             {
                 if (value.IsNullEmptyOrWhiteSpace())
+                {
                     throw new InvalidOperationException("Purchase id is required");
+                }
+
                 if (value.Length > 16)
+                {
                     throw new InvalidOperationException("Purchase id cannot contain more than 16 characters");
+                }
+
                 _purchaseId = value;
             }
         }
@@ -67,9 +76,14 @@ namespace iDeal.Transaction
                 if (value.HasValue)
                 {
                     if (value.Value.TotalMinutes < 1)
+                    {
                         throw new InvalidOperationException("Minimum expiration period is one minute");
+                    }
+
                     if (value.Value.TotalMinutes > 60)
+                    {
                         throw new InvalidOperationException("Maximum expiration period is 1 hour");
+                    }
                 }
                 _expirationPeriod = value;
             }
@@ -84,7 +98,10 @@ namespace iDeal.Transaction
             set
             {
                 if (value.Trim().Length > 32)
+                {
                     throw new InvalidOperationException("Description cannot contain more than 32 characters");
+                }
+
                 _description = value.Trim();
             }
         }
@@ -98,9 +115,15 @@ namespace iDeal.Transaction
             set
             {
                 if (value.IsNullEmptyOrWhiteSpace())
+                {
                     throw new InvalidOperationException("Entrance code is required");
+                }
+
                 if (value.Length > 40)
+                {
                     throw new InvalidOperationException("Entrance code cannot contain more than 40 characters");
+                }
+
                 _entranceCode = value;
             }
         }

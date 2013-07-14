@@ -1,6 +1,5 @@
 ﻿using System;
 using iDeal.SignatureProviders;
-using iDeal.Base;
 
 namespace iDeal.Base
 {
@@ -18,11 +17,20 @@ namespace iDeal.Base
             protected set
             {
                 if (value.IsNullEmptyOrWhiteSpace())
+                {
                     throw new InvalidOperationException("MerchantId does not contain a value");
+                }
+
                 if (value.Contains(" "))
+                {
                     throw new InvalidOperationException("MerchantId cannot contain whitespaces");
+                }
+
                 if (value.Length > 9)
+                {
                     throw new InvalidOperationException("MerchantId cannot contain more than 9 characters.");
+                }
+
                 _merchantId = value;
             }
         }
@@ -36,7 +44,10 @@ namespace iDeal.Base
             protected set
             {
                 if (value < 0 || value > 6)
+                {
                     throw new InvalidOperationException("SubId must contain a value ranging from 0 to 6");
+                }
+
                 _subId = value;
             }
         }

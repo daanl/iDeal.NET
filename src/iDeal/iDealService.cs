@@ -33,19 +33,39 @@ namespace iDeal
         {
             // Configuration guard clauses
             if (configuration.MerchantId.IsNullEmptyOrWhiteSpace())
+            {
                 throw new ConfigurationErrorsException("Merchant Id is not set");
+            }
+
             if (configuration.MerchantId.Length > 9)
+            {
                 throw new ConfigurationErrorsException("Merchant Id cannot contain more as 9 characters");
+            }
+
             if (configuration.MerchantSubId < 0 || configuration.MerchantSubId > 6)
+            {
                 throw new ConfigurationErrorsException("SubId must contain a value ranging from 0 to 6");
+            }
+
             if (configuration.AcquirerUrl.IsNullEmptyOrWhiteSpace())
+            {
                 throw new ConfigurationErrorsException("Url of acquirer is not set");
+            }
+
             if (configuration.AcceptantCertificate == null)
+            {
                 throw new ConfigurationErrorsException("Acceptant's certificate is not set");
+            }
+
             if (!configuration.AcceptantCertificate.HasPrivateKey)
+            {
                 throw new ConfigurationErrorsException("Acceptant's certificate does not contain private key");
+            }
+
             if (configuration.AcquirerCertificate == null)
+            {
                 throw new ConfigurationErrorsException("Acquirer's certificate is not set");
+            }
 
             _configuration = configuration;
             _signatureProvider = signatureProvider;
